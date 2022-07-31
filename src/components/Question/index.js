@@ -12,7 +12,7 @@ const Question = ({ questionlist, activeQuestion }) => {
             <img className="h-28" src={questionlist[activeQuestion]?.image} alt="question one 1" />
             <div className="my-4 text-center">
                 <p className="text-[2em] text-white">
-                    {activeQuestion}. {questionlist[activeQuestion]?.question}
+                    {activeQuestion}. Which shape should be in the rightmost cell with a question mark?
                 </p>
             </div>
             <div className="flex items-center">

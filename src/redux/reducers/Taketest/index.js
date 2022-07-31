@@ -5,40 +5,40 @@ const initialState = {
     gender: undefined,
     age: undefined,
     questionlist: [
+
         {
-            id: 0,
-            question: "Which shape should be in the rightmost cell with a question mark?",
+            id:0,
             image: "https://en.testometrika.com/upload/questions/9a3/9a3e5c664c57fefe9781ed343a0b4224.svg",
             ans: 5,
-            candidateAns: 0,
+            candidateAns:0,
             options: [
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 1,
                     img: "https://en.testometrika.com/upload/answers/2ad/2ad96527ff3bdffc254b05985d90e670.svg"
                 },
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 2,
                     img: "https://en.testometrika.com/upload/answers/743/743c194ea591850121774bbcea728cb7.svg"
                 },
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 3,
                     img: "https://en.testometrika.com/upload/answers/3f4/3f48e60b405fe3a20ae80b4c1effe5be.svg"
                 },
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 4,
                     img: "https://en.testometrika.com/upload/answers/af1/af154b81388bbe80d95a6c2d958090d3.svg"
                 },
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 5,
                     img: "https://en.testometrika.com/upload/answers/282/2829b67f1ddb1c64a70b4ac754fc03c9.svg"
                 },
                 {
-                    questionId: 0,
+                    questionId:0,
                     id: 6,
                     img: "https://en.testometrika.com/upload/answers/d63/d635d6a11058a01b5b6760b6638342fa.svg"
                 }
@@ -46,7 +46,6 @@ const initialState = {
         },
         {
             id: 1,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/61f/61f8311dc95818b190b639bb10e7ff0a.svg",
             ans: 3,
             candidateAns: 0,
@@ -85,7 +84,6 @@ const initialState = {
         },
         {
             id: 2,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/56e/56e7575fce5c66102f68965309041c81.svg",
             ans: 5,
             candidateAns: 0,
@@ -124,7 +122,6 @@ const initialState = {
         },
         {
             id: 3,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/857/85779e2ee0f5a8c6874284c8dc7f040a.svg",
             ans: 6,
             candidateAns: 0,
@@ -163,7 +160,6 @@ const initialState = {
         },
         {
             id: 4,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/86c/86c577fabc67aed0dbd84df222f0685a.svg",
             ans: 4,
             candidateAns: 0,
@@ -202,7 +198,6 @@ const initialState = {
         },
         {
             id: 5,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/a81/a81ad1de8cfdbb5d180ea3fd50a3bacc.svg",
             ans: 5,
             candidateAns: 0,
@@ -241,7 +236,6 @@ const initialState = {
         },
         {
             id: 6,
-            question: "Which shape should be in the rightmost cell with a question mark?",
             image: "https://en.testometrika.com/upload/questions/a84/a840c4e1d62823491d4fa2e03730cfe1.svg",
             ans: 6,
             candidateAns: 0,
@@ -277,18 +271,19 @@ const initialState = {
                     img: "https://en.testometrika.com/upload/answers/4a5/4a5c07bab54b36da281e942add14f6e3.svg"
                 }
             ]
-        }
+        },
     ]
 }
 
 export const TakeTestReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ANSWER_OF_THE_QUESTION":
-            state.questionlist.map((question) => {
+            for(let question of  state.questionlist){
                 if (question.id === state.activeQuestion) {
-                    return question.candidateAns = action.ansByCan
+                    question.candidateAns = action.ansByCan
+                    break
                 }
-            })
+            }
             return { ...state, activeQuestion: ++state.activeQuestion };
         case "SELECT_AGE":
             return { ...state, activeQuestion: ++state.activeQuestion, age: action.age };
@@ -296,6 +291,8 @@ export const TakeTestReducer = (state = initialState, action) => {
             return { ...state, activeQuestion: ++state.activeQuestion, gender: action.gender };
         case "GO_TO_PRE_QUESTION":
             return { ...state, activeQuestion: state.activeQuestion - 1, gender: action.gender };
+        case "RETEST":
+            return { ...state, activeQuestion: 0 };
         default: return state
     }
 }

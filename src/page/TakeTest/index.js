@@ -1,6 +1,8 @@
-import TakeTestLayout from "../../layout/TakeTest";
+import TakeTestLayout from "../../layout/TakeTestLayout";
 
 const TakeTestPage = () => {
+   
+  
     return (
         <div>
             <TakeTestLayout />
